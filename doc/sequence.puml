@@ -1,0 +1,46 @@
+@startuml
+
+actor Alice
+participant ConnectFourServer
+actor Bob
+
+title Play connect four game
+
+group Join a game
+    Alice -> ConnectFourServer: POST /api/v1/players/join
+    ConnectFourServer -> "Alice": Game Id
+end
+
+
+group Join a game
+    Bob -> ConnectFourServer: POST /api/v1/players/join
+    ConnectFourServer -> Bob: Game Id
+end
+
+
+group While game is not finished
+
+    group Wait for turn (polling)
+        Alice -> ConnectFourServer: GET /api/v1/players/games/{gameId}
+        ConnectFourServer -> Alice: Game State
+    end
+
+    group Play
+        Alice -> ConnectFourServer: POST /api/v1/players/games/{gameId}
+        ConnectFourServer -> Alice: Game State
+    end
+
+    group Wait for turn (polling)
+        Bob -> ConnectFourServer: GET /api/v1/players/games/{gameId}
+        ConnectFourServer -> Bob: Game State
+    end
+
+    group Play
+        Bob -> ConnectFourServer: POST /api/v1/players/games/{gameId}
+        ConnectFourServer -> Bob: Game State
+    end
+end
+
+
+
+@enduml

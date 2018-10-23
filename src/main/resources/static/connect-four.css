@@ -1,0 +1,24 @@
+body {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+h3 {
+    margin-top: 2rem;
+}
+
+.board {
+    border-radius: .25rem;
+    background-color: rgba(60, 122, 191, 1);
+}
+
+
+.board td {
+    border:none;
+    padding: .5rem;
+}
+
+.img-disc {
+    height: 45px;
+    width: 45px;
+}

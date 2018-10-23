@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="connect-four.css">
+
+    <title>Connect Four Server</title>
+</head>
+<body>
+
+<div class="container" id="app">
+    <h1>Connect Four</h1>
+    <div class="row">
+        <div class="col">
+            <p class="lead">Add games, get results and live view of running games!</p>
+        </div>
+        <div class="col">
+            <p class="text-right">
+                <button v-on:click="goToSwagger" type="button" class="btn btn-info">Swagger</button>
+            </p>
+        </div>
+        <p class="text-right">
+        </p>
+    </div>
+    <h3>Live view</h3>
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">Win</th>
+                    <th scope="col">Draw</th>
+                    <th scope="col">Loss</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="player in players">
+                    <td>{{ player.id }}</td>
+                    <td>{{ player.count.win }}</td>
+                    <td>{{ player.count.draw }}</td>
+                    <td>{{ player.count.loss }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-5">
+            <table class="table board">
+                <tbody>
+                <tr v-for="rows in currentGame.board">
+                    <td v-for="disc in rows"><img :src="'/images/' + disc + '.png'" class="img-disc"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <ul class="list-group">
+                <li class="list-group-item">Red Player: {{ currentGame.redPlayer }}</li>
+                <li class="list-group-item">Yellow Player: {{ currentGame.yellowPlayer }}</li>
+                <li class="list-group-item">Current player: {{ currentGame.currentPlayer}}</li>
+                <li class="list-group-item">Finished: {{ currentGame.finished }}</li>
+                <li class="list-group-item">Winner: {{ currentGame.winner }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Game Schedule</h3>
+    <h4>Add to schedule</h4>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Player A, Player B and number of games</span>
+            </div>
+            <input v-model="addToSchedule.playerA" type="text" class="form-control">
+            <input v-model="addToSchedule.playerB" type="text" class="form-control">
+            <input v-model="addToSchedule.numberOfGames" type="number" min="1" class="form-control">
+            <div class="input-group-append">
+                <button v-on:click="addScheduledGame" class="btn btn-outline-secondary" type="button">Add</button>
+            </div>
+        </div>
+        <small class="form-text text-muted">In order to add scheduled games manually the application needs to be started
+            in tournament mode.
+        </small>
+    </div>
+    <h4>Scheduled</h4>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Players</th>
+            <th scope="col">Id</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="game in scheduledGames">
+            <td>{{ game.playerIds }}</td>
+            <td>{{ game.id }}</td>
+            <td>
+                <button v-on:click="deleteScheduledGame(game.id)" type="button" class="btn btn-danger btn-sm">Delete
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4>Running/Finished</h4>
+
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Start time</th>
+            <th scope="col">Finished</th>
+            <th scope="col">Red Player</th>
+            <th scope="col">Yellow Player</th>
+            <th scope="col">Winner</th>
+            <th scope="col">Id</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="game in games">
+            <td>{{ game.startTime }}</td>
+            <td>{{ game.finished }}</td>
+            <td>{{ game.redPlayer }}</td>
+            <td>{{ game.yellowPlayer }}</td>
+            <td>{{ game.winner }}</td>
+            <td>{{ game.id }}</td>
+            <td>
+                <button v-on:click="getGameDetails(game.id)" type="button" class="btn btn-primary btn-sm"
+                        data-toggle="modal" data-target="#gameDetails">Details
+                </button>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="gameDetails" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Game</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table board">
+                        <tbody>
+                        <tr v-for="rows in gameDetails.board">
+                            <td v-for="disc in rows"><img :src="'/images/' + disc + '.png'" class="img-disc"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="webjars/vue/2.5.16/vue.js"></script>
+<script src="webjars/vue-resource/1.5.1/dist/vue-resource.min.js"></script>
+<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script src="connect-four.js"></script>
+
+</body>
+</html>

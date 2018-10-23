@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  connect-four-challenge-server:
+    build: .
+    ports:
+      - "8080:8080"

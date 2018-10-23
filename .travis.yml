@@ -1,0 +1,15 @@
+language: java
+jdk:
+- oraclejdk8
+
+before_deploy:
+- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: GHD5Fb7kiUGpUnY2Sm4ekcuJNM/J0UCtjBPT1bH4DUQrLqS7Zw2Q2SO1YnjW+S4DCzJL7JJ2uiap5VpDbhl0S2jyUsBmgRUo+y3tQtYurzdkb03oTRlJAptBqvI9iMzMi90dTiOeSRQs4JpWfFdMKK+dKW2b2CfgiE2LTvuBsVRSGztV8xstQKXPGFZzMH1tXqwSz/m/8u4fnTFIuN82Y0SV+PJbta8DH+J7A3ORM50PAUiIfmF1XkvtPkPoW+zr5wNZ3ppKGfqL1PqGqgKvEim5Zu1Wr8ldjpdjoKdyGkjC1qBcBOGRPuNuNzqkgPkvpzcrorebphTQ6tN+W+G+S8u5NbFCAnny+vLW8nZ7CAoukfNI5QViAYwy3gdbYL+qWJsa4oaGFU12O8urxIKoW4e86qaiVj4vJHpoN3OL/NYi+guXfCgThnlQcj6O5h64s/njfuE8wgPhk0+gRlCZ40/QBUNmDyxi3Z7HqTJ5/NY10/KpIbQ3wOQO8tQVtihkWSlsFdbtVxg8/ACT35W06x3dBHLjPZn1N9RrJNcIopX3+0i/1mpcHd5vDUV6RRtICtNDyh7RSxoggDyrFovSzZrvTZhkpUJuXEFQjd3CcD4bDTPIgH6NSh8qf4HPTRFJd8TtuaOtpjRSeT7izbbX7pQbt9JDqn39WPjEASIOdP8=
+  file: target/connect-four-challenge-server-1.0-SNAPSHOT.zip
+  skip_cleanup: true
+  on:
+    repo: lakermann/connect-four-challenge-server

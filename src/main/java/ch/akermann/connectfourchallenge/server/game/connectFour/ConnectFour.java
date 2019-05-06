@@ -111,33 +111,33 @@ public class ConnectFour {
             }
         }
         // verticalCheck
-        for (int row = 0; row < board.getColumns() - 3; row++) {
-            for (int column = 0; column < board.getRows(); column++) {
-                if (board.getCell(row, column) == playerColor
-                        && board.getCell(row + 1, column) == playerColor
-                        && board.getCell(row + 2, column) == playerColor
-                        && board.getCell(row + 3, column) == playerColor) {
+        for (int column = 0; column < board.getColumns() - 3; column++) {
+            for (int row = 0; row < board.getRows(); row++) {
+                if (board.getCell(column, row) == playerColor
+                        && board.getCell(column + 1, row) == playerColor
+                        && board.getCell(column + 2, row) == playerColor
+                        && board.getCell(column + 3, row) == playerColor) {
                     return true;
                 }
             }
         }
         // ascendingDiagonalCheck
-        for (int row = 3; row < board.getColumns(); row++) {
-            for (int column = 0; column < board.getRows() - 3; column++) {
-                if (board.getCell(row, column) == playerColor
-                        && board.getCell(row - 1, column + 1) == playerColor
-                        && board.getCell(row - 2, column + 2) == playerColor
-                        && board.getCell(row - 3, column + 3) == playerColor)
+        for (int column = 3; column < board.getColumns(); column++) {
+            for (int row = 0; row < board.getRows() - 3; row++) {
+                if (board.getCell(column, row) == playerColor
+                        && board.getCell(column - 1, row + 1) == playerColor
+                        && board.getCell(column - 2, row + 2) == playerColor
+                        && board.getCell(column - 3, row + 3) == playerColor)
                     return true;
             }
         }
         // descendingDiagonalCheck
-        for (int row = 3; row < board.getColumns(); row++) {
-            for (int column = 3; column < board.getRows(); column++) {
-                if (board.getCell(row, column) == playerColor
-                        && board.getCell(row - 1, column - 1) == playerColor
-                        && board.getCell(row - 2, column - 2) == playerColor
-                        && board.getCell(row - 3, column - 3) == playerColor)
+        for (int column = 3; column < board.getColumns(); column++) {
+            for (int row = 3; row < board.getRows(); row++) {
+                if (board.getCell(column, row) == playerColor
+                        && board.getCell(column - 1, row - 1) == playerColor
+                        && board.getCell(column - 2, row - 2) == playerColor
+                        && board.getCell(column - 3, row - 3) == playerColor)
                     return true;
             }
         }

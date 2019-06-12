@@ -174,4 +174,4 @@ The current [game state](#game-state).
 
 ## Sequence of a game
 
-![Sequence of commands](doc/sequence.png)
+![Sequence of commands](./docs/sequence.png)

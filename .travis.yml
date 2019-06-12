@@ -5,8 +5,7 @@ before_deploy:
 - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 deploy:
   provider: releases
-  api_key:
-    secure: rRmovHCLGv3xMsjW1VTDGIwOeK8kY0aCMgVNX8J/j0iY2HXRTK8IGY9waieKbqiU39xWo+bfUjnvkvUvo2PdHgfO1gOs0TTJR16vSLmFGGlu3NjzTMTHpvFiIlT/hr+cqsWswgW+yi4rJuJKLMVd1tjycQVAsqRGzPOdDfySl3fvuCQIQS1xxTHI/DalMqH0icQcn1VtuCy7rf5kuDXc5SD0pKXLZ6kTfPmyc4kvDKYZ5l0il8Zr4P4zdMrkRUuvwsL59Au+YwMCItzxgzBFaIc1VWLFcsbMb4fdJ1sCCDvoemQKYYc4dYI5FGrRwJKGQ7mXyC0W0q+IJulrE2afgcRK8QcN5O9RIJNWT5tn5N+UBK2vuPtG4SqaH4kwNloOaFLA4/w6k8EHXe9Jfby210wjl4vOP6Go6jXL+Dwfuta/gbdaiu4L1Su3N5XJiz7oWXO/UohIPFtvKApawHu1n3mXDeEPtBLGJ0w8nfNOhJK8QOrjTUVBYHHMu2PuPxr0bnukhoowoHhqgk7bca+ex1MJlLuSxN6rfmGJcRg3Zi+klQ1Jeci/NqIjbcmjIC+V22PU6YheVlr2SaIm7f4qnQNPVo6XRpv8JPPL2ji1sGE0KPKfRujhlSfUaQNS7BE8Jw1338dTvm7XjQuwcxKbjzdPI9C46/MB1uDH3vEdBFc=
+  api_key: $GITHUB_TOKEN
   file: target/connect-four-challenge-server-1.0-SNAPSHOT.zip
   skip_cleanup: true
   on:

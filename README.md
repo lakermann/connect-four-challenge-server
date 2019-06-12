@@ -1,4 +1,6 @@
-# Connect Four Challenge Server ![Build Status](https://travis-ci.org/lakermann/connect-four-challenge-server.svg)
+# Connect Four Challenge Server [![Build Status](https://travis-ci.org/lakermann/connect-four-challenge-server.svg?branch=master)](https://travis-ci.org/lakermann/connect-four-challenge-server)
+
+_by [Lukas Akermann](https://github.com/lakermann), October 2018_
 
 This is a Java server for the [connect four challenge](https://github.com/lakermann/connect-four-challenge).
 
@@ -166,7 +168,7 @@ The current [game state](#game-state).
 | players[0].disc     | first player disc color, RED or YELLOW                  |
 | players[1].playerId | second player id                                        |
 | players[1].disc     | second player disc color, RED or YELLOW                 |
-| board               | list of cells, EMPTY, RED or YELLOW                                    |
+| board               | list of cells, EMPTY, RED or YELLOW                     |
 | finished            | true = game is finished, false = game is running        |
 | winner              | null = game is running or draw, player id = game winner |
 

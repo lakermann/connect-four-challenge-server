@@ -1,4 +1,4 @@
-# Connect Four Challenge Server [![Build Status](https://travis-ci.org/lakermann/connect-four-challenge-server.svg?branch=master)](https://travis-ci.org/lakermann/connect-four-challenge-server)
+# Connect Four Challenge Server [![Build](https://github.com/lakermann/connect-four-challenge-server/actions/workflows/build.yml/badge.svg)](https://github.com/lakermann/connect-four-challenge-server/actions/workflows/build.yml)
 
 _by [Lukas Akermann](https://github.com/lakermann), October 2018_
 

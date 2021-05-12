@@ -2,6 +2,8 @@
 
 _by [Lukas Akermann](https://github.com/lakermann), October 2018_
 
+..
+
 This is a Java server for the [connect four challenge](https://github.com/lakermann/connect-four-challenge).
 
 ## Getting started

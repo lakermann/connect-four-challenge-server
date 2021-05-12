@@ -20,6 +20,7 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: target/connect-four-challenge-server-1.0-SNAPSHOT.zip
         env:
